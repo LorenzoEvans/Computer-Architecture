@@ -5,15 +5,19 @@ import sys
 class CPU:
     """Main CPU class."""
 
-    def __init__(self, registers=None):
+    def __init__(self, ram, registers=None,):
         """Construct a new CPU."""
         if registers is None:
-            registers = [0] * registers
+            registers = [0] * 8
         self.registers = registers if registers is not None else registers
+        self.ram = []
 
     def ram_read(self):
-        pass
-
+        ram = self.ram
+        ram_length = len(ram)
+        i = 0
+        while True:
+            pass
     def ram_write(self):
         pass
     def load(self):
