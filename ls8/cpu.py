@@ -5,9 +5,11 @@ import sys
 class CPU:
     """Main CPU class."""
 
-    def __init__(self):
+    def __init__(self, registers=None):
         """Construct a new CPU."""
-        pass
+        if registers is None:
+            registers = [0] * registers
+        self.registers = registers if registers is not None else registers
 
     def ram_read(self):
         pass
