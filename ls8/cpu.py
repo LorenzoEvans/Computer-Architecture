@@ -22,20 +22,26 @@ class CPU:
         self.MUL = 0b10100010
         self.LDI = 0b10000010
         self.HLT = 0b00000001
+        self.DIV = 0b10100011
+        self.MOD = 0b10100100
 
 
     def PRN_OP(self):
-        pass
-    def MUL_OP(self, reg_a, reg_b):
         pass
     def LDI_OP(self):
         pass
     def HLT_OP(self):
         pass
+    def MUL_OP(self, reg_a, reg_b):
+        self.registers[reg_a] *= self.registers[reg_b]
     def ADD_OP(self, reg_a, reg_b):
         self.registers[reg_a] += self.registers[reg_b]
     def SUB_OP(self, reg_a, reg_b):
-        pass
+        self.registers[reg_a] -= self.registers[reg_b]
+    def DIV_OP(self, reg_a, reg_b):
+        self.registers[reg_a] /= self.registers[reg_b]
+    def MOD_OP(self, reg_a, reg_b):
+        self.registers[reg_a] %= self.registers[reg_b]
     def ram_read(self, mem_addr):
         print("placeholder")
 
@@ -65,14 +71,19 @@ class CPU:
 
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
-        PRN, LDI, HLT, ADD, MUL, SUB = self.PRN, self.LDI, self.HLT, self.ADD, self.MUL, self.SUB
-        ADD_OP, SUB_OP, MUL_OP, = self.ADD_OP, self.SUB_OP, self.MUL_OP
+        ADD, MUL, SUB, DIV, MOD = (self.ADD, self.MUL, self.SUB, self.DIV, self.MOD)
+        ADD_OP, MUL_OP = (self.ADD_OP, self.MUL_OP)
+        SUB_OP, DIV_OP, MOD_OP = (self.SUB_OP, self.DIV_OP, self.MOD_OP)
         if op == ADD:
             ADD_OP(reg_a, reg_b)
-        elif op == SUB:
-            SUB_OP(reg_a, reg_b)
         elif op == MUL:
             MUL_OP(reg_a, reg_b)
+        elif op == SUB:
+            SUB_OP(reg_a, reg_b)
+        elif op == DIV:
+            DIV_OP(reg_a, reg_b)
+        elif op == MOD:
+            MOD_OP(reg_a, reg_b)
         else:
             raise Exception("Unsupported ALU operation")
 
