@@ -9,26 +9,21 @@ class CPU:
     def __init__(self):
         """Construct a new CPU."""
 
-        self.ram = []
-        self.pc = 2 # [] ?
-        self.bits = [0] * 8
-        self.add = ''
-        self.sub = ''
+        self.ram = [0] * 256
+        self.pc = 0 # [] ?
+        self.reg = [0] * 8
         self.ir = []
         self.mdr = []
         self.mar = []
         self.fl = []
+        self.PRN = 0b01000111
+        self.ADD = 0b10100000
+        self.SUB = 0b10100001
+        self.MUL = 0b10100010
+        self.LDI = 0b10000010
+        self.HLT = 0b00000001
 
-        # self.registers = {
-    #     "R0": 0,
-    #     "R1": 1,
-    #     "R2": 2,
-    #     "R3": 3,
-    #     "R4": 4,
-    #     "R5": 5,
-    #     "R6": 6,
-    #     "RT": 7,
-    # }
+
 
     def ram_read(self, mem_addr):
         print("placeholder")
