@@ -11,11 +11,18 @@ class CPU:
             registers = [0] * 8
         self.registers = registers if registers is not None else registers
         self.ram = []
+        self.program_counter = 0
+        self.add = ''
+        self.sub = ''
+
 
     def ram_read(self):
         ram = self.ram
         ram_length = len(ram)
         i = 0
+        p_count = self.program_counter
+        running = True
+        command = ram[p_count]
         while True:
             pass
     def ram_write(self):
