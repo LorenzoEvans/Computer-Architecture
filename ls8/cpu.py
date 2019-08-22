@@ -11,14 +11,14 @@ class CPU:
             registers = [0] * 8
         self.registers = registers if registers is not None else registers
         self.ram = []
-        self.program_counter = 0
+        self.pc = 2
         self.add = ''
         self.sub = ''
 
 
-    def ram_read(self):
-            pass
-    def ram_write(self):
+    def ram_read(self, mem_addr):
+            print("placeholder")
+    def ram_write(self, mem_addr, value):
         pass
     def load(self):
         """Load a program into memory."""
@@ -46,7 +46,7 @@ class CPU:
         """ALU operations."""
 
         if op == "ADD":
-            self.reg[reg_a] += self.reg[reg_b]
+            self.registers[reg_a] += self.registers[reg_b]
         #elif op == "SUB": etc
         else:
             raise Exception("Unsupported ALU operation")
@@ -56,14 +56,13 @@ class CPU:
         Handy function to print out the CPU state. You might want to call this
         from run() if you need help debugging.
         """
-        pc = self.program_counter
         print(f"TRACE: %02X | %02X %02X %02X |" % (
             self.pc,
             #self.fl,
             #self.ie,
-            self.ram_read(pc),
-            self.ram_read(pc + 1),
-            self.ram_read(pc + 2)
+            self.ram_read(self.pc),
+            self.ram_read(self.pc + 1),
+            self.ram_read(self.pc + 2)
         ), end='')
 
         for i in range(8):
@@ -73,11 +72,11 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
+        pc = self.pc
         ram = self.ram
         ram_length = len(ram)
         i = 0
-        p_count = self.program_counter
         running = True
-        command = ram[p_count]
+        command = ram[pc]
         while True:
             pass
