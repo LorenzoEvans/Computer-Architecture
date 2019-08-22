@@ -24,7 +24,18 @@ class CPU:
         self.HLT = 0b00000001
 
 
-
+    def PRN(self):
+        pass
+    def MUL(self):
+        pass
+    def LDI(self):
+        pass
+    def HLT(self):
+        pass
+    def ADD(self):
+        pass
+    def SUB(self):
+        pass
     def ram_read(self, mem_addr):
         print("placeholder")
 
