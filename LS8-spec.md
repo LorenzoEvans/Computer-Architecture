@@ -389,7 +389,7 @@ register.
 
 ### JLT
 
-`JLT register`
+`JLT register` 
 
 If `less-than` flag is set (true), jump to the address stored in the given
 register.

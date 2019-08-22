@@ -2,24 +2,40 @@
 
 import sys
 
+
 class CPU:
     """Main CPU class."""
 
-    def __init__(self, ram, registers=None,):
+    def __init__(self):
         """Construct a new CPU."""
-        if registers is None:
-            registers = [0] * 8
-        self.registers = registers if registers is not None else registers
+
         self.ram = []
-        self.pc = 2
+        self.pc = 2 # [] ?
+        self.bits = [0] * 8
         self.add = ''
         self.sub = ''
+        self.ir = []
+        self.mdr = []
+        self.mar = []
+        self.fl = []
 
+        # self.registers = {
+    #     "R0": 0,
+    #     "R1": 1,
+    #     "R2": 2,
+    #     "R3": 3,
+    #     "R4": 4,
+    #     "R5": 5,
+    #     "R6": 6,
+    #     "RT": 7,
+    # }
 
     def ram_read(self, mem_addr):
-            print("placeholder")
+        print("placeholder")
+
     def ram_write(self, mem_addr, value):
         pass
+
     def load(self):
         """Load a program into memory."""
 
@@ -29,25 +45,24 @@ class CPU:
 
         program = [
             # From print8.ls8
-            0b10000010, # LDI R0,8
+            0b10000010,  # LDI R0,8
             0b00000000,
             0b00001000,
-            0b01000111, # PRN R0
+            0b01000111,  # PRN R0
             0b00000000,
-            0b00000001, # HLT
+            0b00000001,  # HLT
         ]
 
         for instruction in program:
             self.ram[address] = instruction
             address += 1
 
-
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
 
         if op == "ADD":
             self.registers[reg_a] += self.registers[reg_b]
-        #elif op == "SUB": etc
+        # elif op == "SUB": etc
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -57,12 +72,12 @@ class CPU:
         from run() if you need help debugging.
         """
         print(f"TRACE: %02X | %02X %02X %02X |" % (
-            self.pc,
-            #self.fl,
-            #self.ie,
-            self.ram_read(self.pc),
-            self.ram_read(self.pc + 1),
-            self.ram_read(self.pc + 2)
+        self.pc,
+        # self.fl,
+        # self.ie,
+        self.ram_read(self.pc),
+        self.ram_read(self.pc + 1),
+        self.ram_read(self.pc + 2)
         ), end='')
 
         for i in range(8):
