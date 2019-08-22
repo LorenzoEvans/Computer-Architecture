@@ -17,13 +17,6 @@ class CPU:
 
 
     def ram_read(self):
-        ram = self.ram
-        ram_length = len(ram)
-        i = 0
-        p_count = self.program_counter
-        running = True
-        command = ram[p_count]
-        while True:
             pass
     def ram_write(self):
         pass
@@ -80,4 +73,11 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
-        pass
+        ram = self.ram
+        ram_length = len(ram)
+        i = 0
+        p_count = self.program_counter
+        running = True
+        command = ram[p_count]
+        while True:
+            pass
