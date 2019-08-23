@@ -10,7 +10,7 @@ class CPU:
         """Construct a new CPU."""
 
         self.ram = [0] * 256
-        self.pc = 0 # [] ?
+        self.pc = 0  # [] ?
         self.registers = [0] * 8
         self.ir = []
         self.mdr = []
@@ -75,7 +75,7 @@ class CPU:
             0b00000001,  # HLT
         ]
 
-        for instruction in program:
+        for instruction in self.ram:
             self.ram[address] = instruction
             address += 1
 
@@ -131,4 +131,5 @@ class CPU:
         running = True
         command = ram[pc]
         while True:
-            pass
+            IR = ram[pc]
+
