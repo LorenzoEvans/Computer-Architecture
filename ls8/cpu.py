@@ -53,10 +53,10 @@ class CPU:
         self.registers[reg_a] %= self.registers[reg_b]
         pc += 1
     def ram_read(self, mem_addr):
-        print("placeholder")
+        return self.ram[mem_addr]
 
     def ram_write(self, mem_addr, value):
-        pass
+        self.ram[mem_addr] = value
 
     def load(self):
         """Load a program into memory."""
