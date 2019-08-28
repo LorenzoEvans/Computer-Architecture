@@ -20,7 +20,7 @@ class CPU:
         self.HLT = 0b00000001
         self.DIV = 0b10100011
         self.MOD = 0b10100100
-
+        self.running = True
 
     def PRN_OP(self):
         pc = self.pc
@@ -30,9 +30,15 @@ class CPU:
         print(reg[op_a])
         pc += 2
     def LDI_OP(self):
-        pass
+        read = self.ram_read
+        pc = self.pc
+        reg = self.registers
+        op_a = read(pc + 1)
+        op_b = read(pc + 2)
+        pc += 3
     def HLT_OP(self):
-        pass
+        self.running = False
+
     def MUL_OP(self, reg_a, reg_b):
 
         read = self.ram_read
@@ -45,6 +51,10 @@ class CPU:
         alu(MUL, reg_a, reg_b)
         pc += 3
 
+    def PUSH_OP(self):
+        pass
+    def POP_OP(self):
+        pass
     def ADD_OP(self, reg_a, reg_b):
         pc = self.pc
         self.registers[reg_a] += self.registers[reg_b]
