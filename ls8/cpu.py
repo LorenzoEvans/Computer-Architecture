@@ -12,10 +12,6 @@ class CPU:
         self.ram = [0] * 256
         self.pc = 0  # [] ?
         self.registers = [0] * 8
-        self.ir = []
-        self.mdr = []
-        self.mar = []
-        self.fl = []
         self.PRN = 0b01000111
         self.ADD = 0b10100000
         self.SUB = 0b10100001
@@ -27,15 +23,28 @@ class CPU:
 
 
     def PRN_OP(self):
-        pass
+        pc = self.pc
+        reg = self.registers
+        read = self.ram_read
+        op_a = read(pc + 1)
+        print(reg[op_a])
+        pc += 2
     def LDI_OP(self):
         pass
     def HLT_OP(self):
         pass
     def MUL_OP(self, reg_a, reg_b):
+
+        read = self.ram_read
         pc = self.pc
-        self.registers[reg_a] *= self.registers[reg_b]
-        pc +=1
+        alu = self.alu
+        reg = self.registers
+        MUL = self.MUL
+        reg_a = read(pc + 1)
+        reg_b = read(pc + 2)
+        alu(MUL, reg_a, reg_b)
+        pc += 3
+
     def ADD_OP(self, reg_a, reg_b):
         pc = self.pc
         self.registers[reg_a] += self.registers[reg_b]
